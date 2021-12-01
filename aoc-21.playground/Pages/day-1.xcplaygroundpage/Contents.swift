@@ -1,9 +1,21 @@
-import UIKit
+import Foundation
 
 func depthIncreases(_ input: String) -> Int {
     return input.split(whereSeparator: \.isNewline)
         .compactMap({ Int($0) })
         .reduce((Int.max, 0)) { prev, next in
+        (next, prev.1 + (next > prev.0 ? 1 : 0))
+    }.1
+}
+
+func depthIncreasesV2(_ input: String) -> Int {
+    let values = input.split(whereSeparator: \.isNewline)
+        .compactMap({ Int($0) })
+    let indices = (0..<values.count-2)
+
+    return indices.map({
+        values[$0] + values[$0+1] + values[$0+2]
+    }).reduce((Int.max, 0)) { prev, next in
         (next, prev.1 + (next > prev.0 ? 1 : 0))
     }.1
 }
@@ -2011,4 +2023,5 @@ let input = """
 3596
 """
 
-print(depthIncreases(input))
+depthIncreases(input)
+depthIncreasesV2(input)

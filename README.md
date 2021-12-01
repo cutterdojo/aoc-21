@@ -2,6 +2,6 @@
 
 ##day 1 - sonar sweep
 - part 1 result: 1298
-- part 2 result:
+- part 2 result: 1248
 
 
